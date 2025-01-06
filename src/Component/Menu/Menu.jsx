@@ -20,10 +20,13 @@ function menu() {
       </div>
 
       <button className="boton1" onClick={() => window.location.href = "/PresupuestoVentas"}>
-        Presupuesto Ventas
+        Presupuesto Interno basado en Ventas
         </button>
         <button className="boton1" onClick={() => window.location.href = "/ConvertirArchivo"}>
-        Construir el archivo VentasGastos para calcular presupuesto
+        Construir el archivo VentasGastos para calcular presupuesto interno basado en ventas
+        </button>
+        <button className="boton1" onClick={() => window.location.href = "/PresupuestoParaCliente"}>
+        Construir presupuesto para un cliente
         </button>
 
         <Footer />
