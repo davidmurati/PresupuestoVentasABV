@@ -188,81 +188,85 @@ const EditableJsonGenerator = () => {
 
   return (
     <div className="container">
-        <header className="header">
+      <header className="header">
         <Navbar />
       </header>
       <h1>Generador de JSON Editable</h1>
-      <button onClick={downloadJson} className="convert-button">
-        Generar y Descargar JSON Principal
-      </button>
-      <button onClick={downloadJsonAdicional} className="convert-button">
-        Generar JSON Adicional
-      </button>
+      <div className="button-container">
+        <button onClick={downloadJson} className="convert-button">
+          Generar y Descargar JSON Principal
+        </button>
+        <button onClick={downloadJsonAdicional} className="convert-button">
+          Generar JSON Adicional
+        </button>
+      </div>
 
       {/* Sección para Mes1 */}
-      <div>
+      <div className="section">
         <h2>Mes1</h2>
         <button onClick={addProduct} className="convert-button">
           Agregar Producto
         </button>
-        <table className="editable-table">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Unidades</th>
-              <th>Precio Unitario</th>
-              <th>Costo Unitario</th>
-              <th>Venta Total</th>
-              <th>Costo Total</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(jsonData.Mes1.productos).map(([producto, datos]) => (
-              <tr key={`Mes1-${producto}`}>
-                <td>{producto}</td>
-                <td>
-                  <input
-                    type="number"
-                    value={datos.Unidades}
-                    onChange={(e) =>
-                      handleInputChange("Mes1", producto, "Unidades", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    value={datos.Precio_unitario}
-                    onChange={(e) =>
-                      handleInputChange("Mes1", producto, "Precio_unitario", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    value={datos.Costo_unitario}
-                    onChange={(e) =>
-                      handleInputChange("Mes1", producto, "Costo_unitario", e.target.value)
-                    }
-                  />
-                </td>
-                <td>{datos.Venta_total}</td>
-                <td>{datos.Costo_total}</td>
-                <td>
-                  <button
-                    onClick={() => removeProduct(producto)}
-                    className="convert-button"
-                    style={{ backgroundColor: "#e74c3c" }}
-                  >
-                    Eliminar
-                  </button>
-                </td>
+        <div className="table-responsive">
+          <table className="editable-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Unidades</th>
+                <th>Precio Unitario</th>
+                <th>Costo Unitario</th>
+                <th>Venta Total</th>
+                <th>Costo Total</th>
+                <th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {Object.entries(jsonData.Mes1.productos).map(([producto, datos]) => (
+                <tr key={`Mes1-${producto}`}>
+                  <td>{producto}</td>
+                  <td>
+                    <input
+                      type="number"
+                      value={datos.Unidades}
+                      onChange={(e) =>
+                        handleInputChange("Mes1", producto, "Unidades", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      value={datos.Precio_unitario}
+                      onChange={(e) =>
+                        handleInputChange("Mes1", producto, "Precio_unitario", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      value={datos.Costo_unitario}
+                      onChange={(e) =>
+                        handleInputChange("Mes1", producto, "Costo_unitario", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>{datos.Venta_total}</td>
+                  <td>{datos.Costo_total}</td>
+                  <td>
+                    <button
+                      onClick={() => removeProduct(producto)}
+                      className="convert-button"
+                      style={{ backgroundColor: "#e74c3c" }}
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <h3>Totales:</h3>
         <p>Ventas Totales: {jsonData.Mes1.Totales.Ventas_totales}</p>
         <p>Costo de Ventas Totales: {jsonData.Mes1.Totales.Costo_de_ventas_totales}</p>
@@ -274,22 +278,21 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleGastosChange("Mes1", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
       </div>
 
       {/* Sección para Mes2 */}
-      <div>
+      <div className="section">
         <h2>Mes2</h2>
         <h3>Totales:</h3>
         <p>Ventas Totales: {jsonData.Mes2.Totales.Ventas_totales}</p>
         <p>Costo de Ventas Totales: {jsonData.Mes2.Totales.Costo_de_ventas_totales}</p>
-        
       </div>
 
       {/* Sección para JSON Adicional */}
-      <div>
+      <div className="section">
         <h2>JSON Adicional</h2>
         <h3>Mes1:</h3>
         <p>
@@ -300,7 +303,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes1", "ImpuestoSobreLaRenta", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -311,7 +314,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes1", "OtrosGastos", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -322,7 +325,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes1", "DevolucionesSobreVentas", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -333,7 +336,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes1", "OtrosProductos", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -344,7 +347,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes1", "PagoPrestamo", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
 
@@ -357,7 +360,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes2", "ImpuestoSobreLaRenta", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -368,7 +371,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes2", "OtrosGastos", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -379,7 +382,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes2", "DevolucionesSobreVentas", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -390,7 +393,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes2", "OtrosProductos", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
         <p>
@@ -401,7 +404,7 @@ const EditableJsonGenerator = () => {
             onChange={(e) =>
               handleJsonAdicionalChange("Mes2", "PagoPrestamo", e.target.value)
             }
-            style={{ marginLeft: "10px", padding: "5px", borderRadius: "5px" }}
+            className="input-field"
           />
         </p>
       </div>

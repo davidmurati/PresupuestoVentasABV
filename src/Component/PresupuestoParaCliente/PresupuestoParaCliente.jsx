@@ -164,7 +164,7 @@ const PresupuestoParaCliente = () => {
       <h1>Presupuesto de Ventas</h1>
 
       {/* Sección de Información General */}
-      <div>
+      <div className="form-section">
         <h2>Información General</h2>
         <label>
           Fecha:
@@ -208,30 +208,31 @@ const PresupuestoParaCliente = () => {
         </label>
         <label>
           Nombre de la partida:
-          <input
+        </label>
+        <input
             type="text"
             value={nombrePartida}
             onChange={(e) => setNombrePartida(e.target.value)}
           />
-        </label>
         <label>
           Descripción de la partida:
-          <textarea
+          
+        </label>
+        <textarea
             value={descripcionPartida}
             onChange={(e) => setDescripcionPartida(e.target.value)}
-            rows={4}
-            cols={80}
+            rows={10}
+            cols={35}
             placeholder="Describa en qué consiste la partida."
           />
-        </label>
       </div>
 
       {/* Sección de Materiales */}
-      <div>
+      <div className="form-section">
         <h2>Materiales</h2>
         <button onClick={agregarMaterial}>Agregar Material</button>
         {materiales.map((material, index) => (
-          <div key={index} className="material-section">
+          <div key={index} className="input-group">
             <h3>Material {index + 1}</h3>
             <label>
               Descripción:
@@ -270,11 +271,11 @@ const PresupuestoParaCliente = () => {
       </div>
 
       {/* Sección de Mano de Obra */}
-      <div>
+      <div className="form-section">
         <h2>Mano de Obra</h2>
         <button onClick={agregarManoDeObra}>Agregar Mano de Obra</button>
         {manoDeObra.map((trabajo, index) => (
-          <div key={index} className="mano-de-obra-section">
+          <div key={index} className="input-group">
             <h3>Trabajo {index + 1}</h3>
             <label>
               Descripción:
@@ -305,11 +306,11 @@ const PresupuestoParaCliente = () => {
       </div>
 
       {/* Sección de Equipos */}
-      <div>
+      <div className="form-section">
         <h2>Equipos</h2>
         <button onClick={agregarEquipo}>Agregar Equipo</button>
         {equipos.map((equipo, index) => (
-          <div key={index} className="equipo-section">
+          <div key={index} className="input-group">
             <h3>Equipo {index + 1}</h3>
             <label>
               Descripción:
@@ -332,7 +333,7 @@ const PresupuestoParaCliente = () => {
       </div>
 
       {/* Sección de Porcentajes */}
-      <div>
+      <div className="form-section">
         <h2>Porcentajes</h2>
         <label>
           Administración y Gastos Generales (%):
@@ -361,25 +362,26 @@ const PresupuestoParaCliente = () => {
       </div>
 
       {/* Sección de Condiciones */}
-      <div>
+      <div className="form-section">
         <h2>Condiciones del Presupuesto</h2>
         <label>
           Condiciones (opcional):
-          <textarea
+          
+        </label>
+        <textarea
             value={condiciones}
             onChange={(e) => setCondiciones(e.target.value)}
-            rows={4}
-            cols={80}
+            rows={10}
+            cols={35}
             placeholder="Ingrese las condiciones del presupuesto, si aplican."
           />
-        </label>
       </div>
 
       {/* Botón para calcular el presupuesto */}
-      <button onClick={calcularPresupuesto}>Calcular Presupuesto</button>
+      <button className="calculate-button" onClick={calcularPresupuesto}>Calcular Presupuesto</button>
 
       {/* Botón para descargar el presupuesto en PDF */}
-      <button onClick={descargarPDF}>Descargar Presupuesto en PDF</button>
+      <button className="download-button" onClick={descargarPDF}>Descargar Presupuesto en PDF</button>
 
       {/* Mostrar el presupuesto generado */}
       {presupuestoTexto && (

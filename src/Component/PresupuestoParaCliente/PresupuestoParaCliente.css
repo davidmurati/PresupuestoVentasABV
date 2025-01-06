@@ -6,9 +6,10 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-  }
+}
 
-  .presupuesto-container {
+/* Contenedor principal del presupuesto */
+.presupuesto-container {
     font-family: Arial, sans-serif;
     max-width: 800px;
     margin: 0 auto;
@@ -16,102 +17,122 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
-  }
-  
-  .presupuesto-container h1 {
+}
+
+/* Título principal */
+.presupuesto-container h1 {
     text-align: center;
     color: #333;
-  }
-  
-  .seccion {
     margin-bottom: 20px;
-  }
-  
-  .seccion h2 {
+}
+
+/* Secciones del presupuesto */
+.seccion {
+    margin-bottom: 20px;
+}
+
+/* Subtítulos de secciones */
+.seccion h2 {
     color: #555;
     border-bottom: 2px solid #ddd;
     padding-bottom: 5px;
-  }
-  
-  .computos-metricos {
+    margin-bottom: 15px;
+}
+
+/* Tablas de cómputos métricos */
+.computos-metricos {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-  }
-  
-  .computos-metricos th, .computos-metricos td {
+}
+
+.computos-metricos th,
+.computos-metricos td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
-  }
-  
-  .computos-metricos th {
+}
+
+.computos-metricos th {
     background-color: #3b3b3b;
-  }
-  
-  .resultados {
+    color: #fff;
+}
+
+/* Tabla de resultados */
+.resultados {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-  }
-  
-  .resultados td {
+}
+
+.resultados td {
     border: 1px solid #ddd;
     padding: 8px;
-  }
-  
-  .resultados td:first-child {
+}
+
+.resultados td:first-child {
     font-weight: bold;
     background-color: #f2f2f2;
-  }
-  
-  .container {
+}
+
+/* Contenedor general */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  
-  h1, h2, h3 {
+}
+
+/* Títulos */
+h1, h2, h3 {
     color: #2c3e50;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-  }
-  
-  h2 {
+}
+
+h2 {
     font-size: 2rem;
     margin-top: 30px;
     margin-bottom: 15px;
-  }
-  
-  h3 {
+}
+
+h3 {
     font-size: 1.5rem;
     margin-top: 20px;
     margin-bottom: 10px;
-  }
-  
-  /* Formularios y entradas */
-  label {
+}
+
+/* Formularios y entradas */
+label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="date"] {
+}
+
+input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-  }
-  
-  button {
+}
+
+
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Botones */
+button {
     background-color: #3498db;
     color: #fff;
     padding: 10px 20px;
@@ -120,119 +141,140 @@ body {
     cursor: pointer;
     font-size: 1rem;
     margin: 10px 0;
-  }
-  
-  button:hover {
+    width: 100%; /* Botones ocuparán todo el ancho en móviles */
+}
+
+button:hover {
     background-color: #2980b9;
-  }
-  
-  /* Secciones de materiales, mano de obra y equipos */
-  .material-section,
-  .mano-de-obra-section,
-  .equipo-section {
+}
+
+/* Secciones de materiales, mano de obra y equipos */
+.material-section,
+.mano-de-obra-section,
+.equipo-section {
     background-color: #fff;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .material-section h3,
-  .mano-de-obra-section h3,
-  .equipo-section h3 {
+}
+
+.material-section h3,
+.mano-de-obra-section h3,
+.equipo-section h3 {
     margin-top: 0;
-  }
-  
-  /* Tabla de resultados */
-  table {
+}
+
+/* Tabla de resultados */
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  table th,
-  table td {
+}
+
+table th,
+table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-  }
-  
-  table th {
+}
+
+table th {
     background-color: #3498db;
     color: #fff;
-  }
-  
-  table tr:hover {
+}
+
+table tr:hover {
     background-color: #f1f1f1;
-  }
-  
-  /* Diseño responsive */
-  @media (max-width: 768px) {
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
     h1 {
-      font-size: 2rem;
+        font-size: 2rem;
     }
-  
+
     h2 {
-      font-size: 1.75rem;
+        font-size: 1.75rem;
     }
-  
+
     h3 {
-      font-size: 1.25rem;
+        font-size: 1.25rem;
     }
-  
+
     .container {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .material-section,
     .mano-de-obra-section,
     .equipo-section {
-      padding: 15px;
+        padding: 15px;
     }
-  
+
     input[type="text"],
     input[type="number"],
     input[type="date"] {
-      font-size: 0.9rem;
+        font-size: 0.9rem;
     }
-  
+
     button {
-      width: 100%;
-      padding: 15px;
-      font-size: 1rem;
+        width: 100%;
+        padding: 15px;
+        font-size: 1rem;
     }
-  
+
     table th,
     table td {
-      padding: 10px;
+        padding: 10px;
     }
-  }
-  
-  @media (max-width: 480px) {
+
+    /* Ajustes para tablas en móviles */
+    table {
+        display: block;
+        overflow-x: auto; /* Permite scroll horizontal en tablas grandes */
+    }
+}
+
+@media (max-width: 480px) {
     h1 {
-      font-size: 1.75rem;
+        font-size: 1.75rem;
     }
-  
+
     h2 {
-      font-size: 1.5rem;
+        font-size: 1.5rem;
     }
-  
+
     h3 {
-      font-size: 1.1rem;
+        font-size: 1.1rem;
     }
-  
+
     .material-section,
     .mano-de-obra-section,
     .equipo-section {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     table th,
     table td {
-      padding: 8px;
-      font-size: 0.9rem;
+        padding: 8px;
+        font-size: 0.9rem;
     }
-  }
+
+    /* Ajustes adicionales para móviles */
+    .presupuesto-container {
+        padding: 10px;
+    }
+
+    .seccion h2 {
+        font-size: 1.25rem;
+    }
+
+    .computos-metricos th,
+    .computos-metricos td {
+        padding: 6px;
+    }
+}
