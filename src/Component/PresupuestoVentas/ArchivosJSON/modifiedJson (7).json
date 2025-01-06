@@ -1,0 +1,68 @@
+{
+  "Mes1": {
+    "productos": {
+      "Producto 1": {
+        "Unidades": 55,
+        "Precio_unitario": 10,
+        "Costo_unitario": 5,
+        "Venta_total": 550,
+        "Costo_total": 275
+      },
+      "Producto 2": {
+        "Unidades": 10,
+        "Precio_unitario": 20,
+        "Costo_unitario": 12,
+        "Venta_total": 200,
+        "Costo_total": 120
+      }
+    },
+    "Totales": {
+      "Ventas_totales": 750,
+      "Costo_de_ventas_totales": 395,
+      "Gastos_Operativos_Otros_Costos": 50
+    },
+    "ImpuestoSobreLaRenta": 1.16,
+    "OtrosGastos": 10,
+    "DevolucionesSobreVentas": 20,
+    "OtrosProductos": 110,
+    "PagoPrestamo": 0
+  },
+  "Mes2": {
+    "productos": {
+      "Producto 1": {
+        "Unidades": 200,
+        "Precio_unitario": 10,
+        "Costo_unitario": 5,
+        "Venta_total": 2000,
+        "Costo_total": 600,
+        "UnidadesAProducir": 120,
+        "InventarioActual": 100,
+        "InventarioDeseado": 20,
+        "CapacidadMaximaProduccion": 300
+      },
+      "Producto 2": {
+        "Unidades": 15,
+        "Precio_unitario": 20,
+        "Costo_unitario": 12,
+        "Venta_total": 300,
+        "Costo_total": 180,
+        "UnidadesAProducir": 15,
+        "InventarioActual": 20,
+        "InventarioDeseado": 20,
+        "FactorCrecimiento": 1.5,
+        "CapacidadMaximaProduccion": 200
+      }
+    },
+    "Totales": {
+      "Ventas_totales": 2300,
+      "Costo_de_ventas_totales": 780,
+      "Gastos_Operativos_Otros_Costos": 200
+    },
+    "Pago Prestamo": 300,
+    "ImpuestoSobreLaRenta": 1.16,
+    "OtrosGastos": 10,
+    "DevolucionesSobreVentas": 20,
+    "OtrosProductos": 120,
+    "PagoPrestamo": 52
+  }
+}

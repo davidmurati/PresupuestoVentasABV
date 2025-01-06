@@ -1,0 +1,19 @@
+{
+    "empresa": "Fernandas, S.A. de C.V.",
+    "titulo": "Estado de resultados",
+    "periodo": "del 1 de enero al 30 de junio de 200X",
+    "ventas_totales": 295000,
+    "devoluciones_sobre_ventas": -5000,
+    "ventas_netas": 290000,
+    "costo_de_ventas": -122700,
+    "utilidad_bruta": 167300,
+    "gastos_de_venta": -69000,
+    "gastos_de_administracion": -38000,
+    "total_gastos_generales": -107000,
+    "otros_ingresos_y_gastos": 4800,
+    "resultado_integral_de_financiamiento": 0,
+    "partidas_no_ordinarias": 0,
+    "utilidad_antes_de_impuesto": 55500,
+    "impuesto_a_la_utilidad_28_por_ciento": -15540,
+    "utilidad_neta": 39960
+}

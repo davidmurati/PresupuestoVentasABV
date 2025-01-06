@@ -1,0 +1,16 @@
+{
+  "Mes1": {
+    "ImpuestoSobreLaRenta": 1.16,
+    "OtrosGastos": 10,
+    "DevolucionesSobreVentas": 20,
+    "OtrosProductos": 110,
+    "PagoPrestamo": 0
+  },
+  "Mes2": {
+    "ImpuestoSobreLaRenta": 1.16,
+    "OtrosGastos": 10,
+    "DevolucionesSobreVentas": 20,
+    "OtrosProductos": 120,
+    "PagoPrestamo": 52
+  }
+}

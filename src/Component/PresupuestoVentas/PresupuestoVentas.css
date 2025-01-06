@@ -1,0 +1,191 @@
+/* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 80px auto 20px; /* Margen superior para la barra fija */
+    padding: 20px;
+}
+
+.navbar {
+    position: fixed; /* Barra de navegación fija */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+    background-color: #2c3e50; /* Color de fondo */
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para mejor visibilidad */
+}
+
+.navbar a {
+    color: white; /* Color del texto */
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #3498db; /* Color al pasar el mouse */
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 30px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Estilos para botones y entradas */
+input[type="file"], input[type="text"], button {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="file"] {
+    background-color: #fff;
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.error {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Estilos para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para el formulario de productos */
+.product-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.product-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.product-form input {
+    width: 100%;
+    max-width: 300px;
+}
+
+.product-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-title {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el JSON en texto */
+pre {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+}
