@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./PresupuestoParaCLiente.css"; // Importar el archivo CSS
+import "./PresupuestoParaCliente.css"; // Importar el archivo CSS
 import Navbar from '../Navbar/Navbar';
 import html2pdf from "html2pdf.js";
 
-const PresupuestoParaCLiente = () => {
+const PresupuestoParaCliente = () => {
   // Estados para los datos del usuario
   const [fecha, setFecha] = useState("");
   const [empresaVendedora, setEmpresaVendedora] = useState({ nombre: "", rif: "" });
@@ -432,4 +432,4 @@ const PresupuestoParaCLiente = () => {
   );
 };
 
-export default PresupuestoParaCLiente;
+export default PresupuestoParaCliente;
