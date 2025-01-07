@@ -113,7 +113,7 @@ const PresupuestoParaCliente = () => {
     // Generar el texto del presupuesto con formato profesional
     const textoPresupuesto = `
       <div class="presupuesto-container">
-      ${logo ? `<div class="logo-container"><img src="${logo}" alt="Logo de la compañía" class="logo" /></div>` : ""}
+        ${logo ? `<div class="logo-container"><img src="${logo}" alt="Logo de la compañía" class="logo" /></div>` : ""}
         <h1>Presupuesto de Ventas</h1>
         <div class="seccion">
           <h2>Información General</h2>
@@ -124,8 +124,106 @@ const PresupuestoParaCliente = () => {
           <p><strong>Descripción de la Partida:</strong> ${descripcionPartida}</p>
         </div>
 
+        <!-- Sección de Materiales -->
         <div class="seccion">
-          <h2>Cómputos Métricos</h2>
+          <h2>Materiales</h2>
+          <table class="computos-metricos">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Unidad</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario (USD)</th>
+                <th>Total (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${materiales
+                .map(
+                  (material) => `
+                <tr>
+                  <td>${material.descripcion}</td>
+                  <td>${material.unidad}</td>
+                  <td>${material.cantidad}</td>
+                  <td>${material.costoUSD}</td>
+                  <td>${(material.cantidad * material.costoUSD).toFixed(2)}</td>
+                </tr>
+              `
+                )
+                .join("")}
+              <tr>
+                <td colspan="4"><strong>Total Materiales</strong></td>
+                <td><strong>${totalMateriales.toFixed(2)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sección de Mano de Obra -->
+        <div class="seccion">
+          <h2>Mano de Obra</h2>
+          <table class="computos-metricos">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Salario (USD)</th>
+                <th>Total (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${manoDeObra
+                .map(
+                  (trabajo) => `
+                <tr>
+                  <td>${trabajo.descripcion}</td>
+                  <td>${trabajo.cantidad}</td>
+                  <td>${trabajo.salario}</td>
+                  <td>${(trabajo.cantidad * trabajo.salario).toFixed(2)}</td>
+                </tr>
+              `
+                )
+                .join("")}
+              <tr>
+                <td colspan="3"><strong>Total Mano de Obra</strong></td>
+                <td><strong>${totalManoDeObra.toFixed(2)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sección de Depreciación de Equipos -->
+        <div class="seccion">
+          <h2>Depreciación de Equipos</h2>
+          <table class="computos-metricos">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto de Depreciación (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${equipos
+                .map(
+                  (equipo) => `
+                <tr>
+                  <td>${equipo.descripcion}</td>
+                  <td>${equipo.montoDepreciacionUSD}</td>
+                </tr>
+              `
+                )
+                .join("")}
+              <tr>
+                <td><strong>Total Depreciación de Equipos</strong></td>
+                <td><strong>${totalDepreciacionEquiposUSD.toFixed(2)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sección de Totales -->
+        <div class="seccion">
+          <h2>Totales</h2>
           <table class="computos-metricos">
             <thead>
               <tr>
@@ -135,21 +233,50 @@ const PresupuestoParaCliente = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Total Precio Unitario</td>
-                <td>${totalPrecioUnitario.toFixed(2)}</td>
+                <td>Total Materiales</td>
+                <td>${totalMateriales.toFixed(2)}</td>
               </tr>
               <tr>
-                <td>IVA</td>
+                <td>Total Mano de Obra</td>
+                <td>${totalManoDeObra.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td>Total Depreciación de Equipos</td>
+                <td>${totalDepreciacionEquiposUSD.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td><strong>Precio Unitario Directo</strong></td>
+                <td><strong>${precioUnitarioDirecto.toFixed(2)}</strong></td>
+              </tr>
+              <tr>
+                <td>Administración y Gastos Generales (${porcentajes.administracionGastos}%)</td>
+                <td>${administracionGastos.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td><strong>Sub-Total Unitario</strong></td>
+                <td><strong>${subTotalUnitario.toFixed(2)}</strong></td>
+              </tr>
+              <tr>
+                <td>Utilidad e Imprevistos (${porcentajes.utilidadImprevistos}%)</td>
+                <td>${utilidadImprevistos.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td><strong>Total Precio Unitario</strong></td>
+                <td><strong>${totalPrecioUnitario.toFixed(2)}</strong></td>
+              </tr>
+              <tr>
+                <td>IVA (${porcentajes.iva}%)</td>
                 <td>${iva.toFixed(2)}</td>
               </tr>
               <tr>
-                <td>Total de la Partida</td>
-                <td>${totalPartida.toFixed(2)}</td>
+                <td><strong>Total de la Partida</strong></td>
+                <td><strong>${totalPartida.toFixed(2)}</strong></td>
               </tr>
             </tbody>
           </table>
         </div>
 
+        <!-- Sección de Condiciones -->
         <div class="seccion">
           <h2>Condiciones del Servicio</h2>
           <p>${condiciones}</p>
@@ -405,7 +532,6 @@ const PresupuestoParaCliente = () => {
 
       {/* Mostrar el presupuesto generado */}
       {presupuestoTexto && (
-        
         <div className="presupuesto-generado" dangerouslySetInnerHTML={{ __html: presupuestoTexto }} />
       )}
 
@@ -455,4 +581,4 @@ const PresupuestoParaCliente = () => {
   );
 };
 
-export default PresupuestoParaCliente
+export default PresupuestoParaCliente;
