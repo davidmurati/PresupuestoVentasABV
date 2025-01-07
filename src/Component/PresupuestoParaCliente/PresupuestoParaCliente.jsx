@@ -159,68 +159,6 @@ const PresupuestoParaCliente = () => {
           </table>
         </div>
 
-        <!-- Sección de Mano de Obra -->
-        <div class="seccion">
-          <h2>Mano de Obra</h2>
-          <table class="computos-metricos">
-            <thead>
-              <tr>
-                <th>Descripción</th>
-                <th>Cantidad</th>
-                <th>Salario (USD)</th>
-                <th>Total (USD)</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${manoDeObra
-                .map(
-                  (trabajo) => `
-                <tr>
-                  <td>${trabajo.descripcion}</td>
-                  <td>${trabajo.cantidad}</td>
-                  <td>${trabajo.salario}</td>
-                  <td>${(trabajo.cantidad * trabajo.salario).toFixed(2)}</td>
-                </tr>
-              `
-                )
-                .join("")}
-              <tr>
-                <td colspan="3"><strong>Total Mano de Obra</strong></td>
-                <td><strong>${totalManoDeObra.toFixed(2)}</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Sección de Depreciación de Equipos -->
-        <div class="seccion">
-          <h2>Depreciación de Equipos</h2>
-          <table class="computos-metricos">
-            <thead>
-              <tr>
-                <th>Descripción</th>
-                <th>Monto de Depreciación (USD)</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${equipos
-                .map(
-                  (equipo) => `
-                <tr>
-                  <td>${equipo.descripcion}</td>
-                  <td>${equipo.montoDepreciacionUSD}</td>
-                </tr>
-              `
-                )
-                .join("")}
-              <tr>
-                <td><strong>Total Depreciación de Equipos</strong></td>
-                <td><strong>${totalDepreciacionEquiposUSD.toFixed(2)}</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
         <!-- Sección de Totales -->
         <div class="seccion">
           <h2>Totales</h2>
