@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PresupuestoParaCliente.css"; // Importar el archivo CSS
+import "./PresupuestoParaClienteServ.css"; // Importar el archivo CSS
 import Navbar from '../Navbar/Navbar';
 import html2pdf from "html2pdf.js";
 
@@ -133,7 +133,8 @@ const PresupuestoParaCliente = () => {
                 <th>Descripción</th>
                 <th>Unidad</th>
                 <th>Cantidad</th>
-                
+                <th>Precio Unitario (USD)</th>
+                <th>Total (USD)</th>
               </tr>
             </thead>
             <tbody>
@@ -144,12 +145,78 @@ const PresupuestoParaCliente = () => {
                   <td>${material.descripcion}</td>
                   <td>${material.unidad}</td>
                   <td>${material.cantidad}</td>
-                  
+                  <td>${material.costoUSD}</td>
+                  <td>${(material.cantidad * material.costoUSD).toFixed(2)}</td>
                 </tr>
               `
                 )
                 .join("")}
-              
+              <tr>
+                <td colspan="4"><strong>Total Materiales</strong></td>
+                <td><strong>${totalMateriales.toFixed(2)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sección de Mano de Obra -->
+        <div class="seccion">
+          <h2>Mano de Obra</h2>
+          <table class="computos-metricos">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Salario (USD)</th>
+                <th>Total (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${manoDeObra
+                .map(
+                  (trabajo) => `
+                <tr>
+                  <td>${trabajo.descripcion}</td>
+                  <td>${trabajo.cantidad}</td>
+                  <td>${trabajo.salario}</td>
+                  <td>${(trabajo.cantidad * trabajo.salario).toFixed(2)}</td>
+                </tr>
+              `
+                )
+                .join("")}
+              <tr>
+                <td colspan="3"><strong>Total Mano de Obra</strong></td>
+                <td><strong>${totalManoDeObra.toFixed(2)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sección de Depreciación de Equipos -->
+        <div class="seccion">
+          <h2>Depreciación de Equipos</h2>
+          <table class="computos-metricos">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto de Depreciación (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${equipos
+                .map(
+                  (equipo) => `
+                <tr>
+                  <td>${equipo.descripcion}</td>
+                  <td>${equipo.montoDepreciacionUSD}</td>
+                </tr>
+              `
+                )
+                .join("")}
+              <tr>
+                <td><strong>Total Depreciación de Equipos</strong></td>
+                <td><strong>${totalDepreciacionEquiposUSD.toFixed(2)}</strong></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -165,7 +232,34 @@ const PresupuestoParaCliente = () => {
               </tr>
             </thead>
             <tbody>
-              
+              <tr>
+                <td>Total Materiales</td>
+                <td>${totalMateriales.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td>Total Mano de Obra</td>
+                <td>${totalManoDeObra.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td>Total Depreciación de Equipos</td>
+                <td>${totalDepreciacionEquiposUSD.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td><strong>Precio Unitario Directo</strong></td>
+                <td><strong>${precioUnitarioDirecto.toFixed(2)}</strong></td>
+              </tr>
+              <tr>
+                <td>Administración y Gastos Generales (${porcentajes.administracionGastos}%)</td>
+                <td>${administracionGastos.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td><strong>Sub-Total Unitario</strong></td>
+                <td><strong>${subTotalUnitario.toFixed(2)}</strong></td>
+              </tr>
+              <tr>
+                <td>Utilidad e Imprevistos (${porcentajes.utilidadImprevistos}%)</td>
+                <td>${utilidadImprevistos.toFixed(2)}</td>
+              </tr>
               <tr>
                 <td><strong>Total Precio Unitario</strong></td>
                 <td><strong>${totalPrecioUnitario.toFixed(2)}</strong></td>

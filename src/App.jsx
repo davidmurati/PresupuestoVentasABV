@@ -8,6 +8,7 @@ import EstimarPresupuestoVentas from "./Component/PresupuestoVentas/EstimarPresu
 import ConvertirArchivo from "./Component/ConvertirArchivo/ConvertirArchivo";
 import ConsultaIA from "./Component/Consulta/ConsultaIA";
 import PresupuestoParaCliente from "./Component/PresupuestoParaCliente/PresupuestoParaCliente";
+import PresupuestoParaClienteServ from "./Component/PresupuestoParaClienteServ/PresupuestoParaClienteServ";
 
 function App() {
 
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route exact path="/PresupuestoParaCliente">
           <PresupuestoParaCliente />
+        </Route>
+        <Route exact path="/PresupuestoParaClienteServ">
+          <PresupuestoParaClienteServ />
         </Route>
      </Switch>
      </Router>

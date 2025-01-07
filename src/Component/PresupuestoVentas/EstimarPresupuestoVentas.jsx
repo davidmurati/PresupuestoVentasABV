@@ -109,15 +109,21 @@ const Presupuesto = () => {
     const utilidadNetaAntesDeImpuestos1 =
       (jsonData.Mes1.Totales.Ventas_totales || 0) -
       (jsonData.Mes1.Totales.Costo_de_ventas_totales || 0) -
-      (jsonData.Mes1.Totales.Gastos_Operativos_Otros_Costos || 0)+
-      (jsonData.Mes1.OtrosProductos || 0);
+      (jsonData.Mes1.Totales.Gastos_Operativos_Otros_Costos || 0)-
+      (jsonData.Mes1.OtrosGastos || 0)-
+      (jsonData.Mes1.DevolucionesSobreVentas || 0)+
+      (jsonData.Mes1.OtrosProductos || 0)-
+      (jsonData.Mes1["PagoPrestamo"] || 0);
 
     // Calcular la utilidad neta antes de impuestos
     const utilidadNetaAntesDeImpuestos2 =
       (jsonData.Mes2.Totales.Ventas_totales || 0) -
       (jsonData.Mes2.Totales.Costo_de_ventas_totales || 0) -
-      (jsonData.Mes2.Totales.Gastos_Operativos_Otros_Costos || 0)+
-      (jsonData.Mes2.OtrosProductos || 0);
+      (jsonData.Mes2.Totales.Gastos_Operativos_Otros_Costos || 0)-
+      (jsonData.Mes2.OtrosGastos || 0)-
+      (jsonData.Mes2.DevolucionesSobreVentas || 0)+
+      (jsonData.Mes2.OtrosProductos || 0)-
+      (jsonData.Mes2["PagoPrestamo"] || 0);
 
     // Calcular el impuesto sobre la renta
     const impuestos1 = utilidadNetaAntesDeImpuestos1 * tasaImpuesto1;

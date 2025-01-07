@@ -26,7 +26,10 @@ function menu() {
         Construir el archivo VentasGastos para calcular presupuesto interno basado en ventas
         </button>
         <button className="boton1" onClick={() => window.location.href = "/PresupuestoParaCliente"}>
-        Construir presupuesto para un cliente
+        Construir presupuesto para un cliente MATERIALES
+        </button>
+        <button className="boton1" onClick={() => window.location.href = "/PresupuestoParaClienteServ"}>
+        Construir presupuesto para un cliente SERVICIO
         </button>
 
         <Footer />
