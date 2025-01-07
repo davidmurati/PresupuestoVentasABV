@@ -8,6 +8,15 @@ body {
     line-height: 1.6;
 }
 
+.logo {
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: 100px;
+    height: relative;
+    position: relative;
+    top: 5px;
+    left: 5px;
+  }
+
 /* Contenedor principal del presupuesto */
 .presupuesto-container {
     font-family: Arial, sans-serif;
@@ -112,18 +121,19 @@ label {
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+   
 }
 
 
 input[type="number"],
 input[type="date"] {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;

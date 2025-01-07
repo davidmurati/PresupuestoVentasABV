@@ -21,6 +21,7 @@ const PresupuestoParaCliente = () => {
   const [resultados, setResultados] = useState(null);
   const [presupuestoTexto, setPresupuestoTexto] = useState("");
   const [condiciones, setCondiciones] = useState("");
+  const [logo, setLogo] = useState(null); // Estado para almacenar la imagen del logo
 
   // Funciones para agregar materiales, mano de obra y equipos
   const agregarMaterial = () => {
@@ -56,6 +57,18 @@ const PresupuestoParaCliente = () => {
 
   const handlePorcentajesChange = (field, value) => {
     setPorcentajes({ ...porcentajes, [field]: parseFloat(value) || 0 });
+  };
+
+  // Función para manejar la subida del logo
+  const handleLogoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogo(reader.result); // Guardar la imagen en base64
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   // Función para calcular el presupuesto
@@ -100,6 +113,7 @@ const PresupuestoParaCliente = () => {
     // Generar el texto del presupuesto con formato profesional
     const textoPresupuesto = `
       <div class="presupuesto-container">
+      ${logo ? `<div class="logo-container"><img src="${logo}" alt="Logo de la compañía" class="logo" /></div>` : ""}
         <h1>Presupuesto de Ventas</h1>
         <div class="seccion">
           <h2>Información General</h2>
@@ -163,6 +177,12 @@ const PresupuestoParaCliente = () => {
 
       <h1>Presupuesto de Ventas</h1>
 
+      {/* Sección para subir el logo */}
+      <div className="form-section">
+        <h2>Logo de la Compañía</h2>
+        <input type="file" accept="image/*" onChange={handleLogoChange} />
+      </div>
+
       {/* Sección de Información General */}
       <div className="form-section">
         <h2>Información General</h2>
@@ -222,7 +242,7 @@ const PresupuestoParaCliente = () => {
             value={descripcionPartida}
             onChange={(e) => setDescripcionPartida(e.target.value)}
             rows={10}
-            cols={35}
+            cols={25}
             placeholder="Describa en qué consiste la partida."
           />
       </div>
@@ -372,7 +392,7 @@ const PresupuestoParaCliente = () => {
             value={condiciones}
             onChange={(e) => setCondiciones(e.target.value)}
             rows={10}
-            cols={35}
+            cols={25}
             placeholder="Ingrese las condiciones del presupuesto, si aplican."
           />
       </div>
@@ -385,6 +405,7 @@ const PresupuestoParaCliente = () => {
 
       {/* Mostrar el presupuesto generado */}
       {presupuestoTexto && (
+        
         <div className="presupuesto-generado" dangerouslySetInnerHTML={{ __html: presupuestoTexto }} />
       )}
 
@@ -434,4 +455,4 @@ const PresupuestoParaCliente = () => {
   );
 };
 
-export default PresupuestoParaCliente;
+export default PresupuestoParaCliente

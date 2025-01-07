@@ -1,6 +1,5 @@
 .footer-container {
-    background-color: #33333300;
-    color: #0a0a0a;
+    
     text-align: center;
     padding: 1rem;
     position:relative;
@@ -10,7 +9,7 @@
 
   .footer-text{
     margin: 20px;
-    color: #e7e4e4;
+    color: #eeecec;
     font-size: 10px;
     text-align: center;
   }
