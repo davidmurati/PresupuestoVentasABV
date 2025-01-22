@@ -1,290 +1,218 @@
-/* Estilos generales */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #2980b9;
+    --background-light: #f8f9fa;
+    --text-color: #333;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  /* Estilos generales */
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-}
-
-.logo {
-    width: 100px; /* Ajusta el tamaño según sea necesario */
-    height: 100px;
-    height: relative;
-    position: relative;
-    top: 5px;
-    left: 5px;
   }
-
-/* Contenedor principal del presupuesto */
-.presupuesto-container {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-
-/* Título principal */
-.presupuesto-container h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Secciones del presupuesto */
-.seccion {
-    margin-bottom: 20px;
-}
-
-/* Subtítulos de secciones */
-.seccion h2 {
-    color: #555;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-}
-
-/* Tablas de cómputos métricos */
-.computos-metricos {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.computos-metricos th,
-.computos-metricos td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-.computos-metricos th {
-    background-color: #3498db;
-    color: #fff;
-}
-
-/* Tabla de resultados */
-.resultados {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.resultados td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.resultados td:first-child {
-    font-weight: bold;
-    background-color: #f2f2f2;
-}
-
-/* Contenedor general */
-.container {
+  
+  /* Contenedor principal */
+  .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-}
-
-/* Títulos */
-h1, h2, h3 {
-    color: #2c3e50;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-h3 {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Header y navegación */
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  /* Secciones del formulario */
+  .form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .form-section h2 {
+    color: var(--primary-color);
     font-size: 1.5rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-/* Formularios y entradas */
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin: 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+  }
+  
+  /* Grupos de inputs */
+  .input-group {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+  }
+  
+  .input-group h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+  }
+  
+  /* Elementos de formulario */
+  label {
+    display: grid;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
     font-size: 1rem;
-   
-}
-
-
-input[type="number"],
-input[type="date"] {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-/* Botones */
-button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Botones */
+  button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 1rem;
-    margin: 10px 0;
-    width: 100%; /* Botones ocuparán todo el ancho en móviles */
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-/* Secciones de materiales, mano de obra y equipos */
-.material-section,
-.mano-de-obra-section,
-.equipo-section {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.material-section h3,
-.mano-de-obra-section h3,
-.equipo-section h3 {
-    margin-top: 0;
-}
-
-/* Tabla de resultados */
-table {
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-1px);
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Tablas */
+  table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-table th,
-table td {
-    padding: 12px;
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+  }
+  
+  th, td {
+    padding: 1rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-table th {
-    background-color: #3498db;
-    color: #fff;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Diseño responsive */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.75rem;
-    }
-
-    h3 {
-        font-size: 1.25rem;
-    }
-
+    border-bottom: 1px solid #eee;
+  }
+  
+  th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+  }
+  
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Presupuesto generado */
+  .presupuesto-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .logo-container {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .logo {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
     .container {
-        padding: 10px;
+      padding: 1rem;
     }
-
-    .material-section,
-    .mano-de-obra-section,
-    .equipo-section {
-        padding: 15px;
+    
+    .form-section {
+      padding: 1.5rem;
     }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="date"] {
-        font-size: 0.9rem;
+    
+    .input-group {
+      padding: 1rem;
     }
-
-    button {
-        width: 100%;
-        padding: 15px;
-        font-size: 1rem;
-    }
-
-    table th,
-    table td {
-        padding: 10px;
-    }
-
-    /* Ajustes para tablas en móviles */
+    
     table {
-        display: block;
-        overflow-x: auto; /* Permite scroll horizontal en tablas grandes */
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.75rem;
+  }
+  
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
     }
-
-    h2 {
-        font-size: 1.5rem;
+    
+    .form-section {
+      padding: 1rem;
     }
-
-    h3 {
-        font-size: 1.1rem;
+    
+    button {
+      width: 100%;
     }
-
-    .material-section,
-    .mano-de-obra-section,
-    .equipo-section {
-        padding: 10px;
+    
+    .button-group {
+      flex-direction: column;
     }
-
-    table th,
-    table td {
-        padding: 8px;
-        font-size: 0.9rem;
-    }
-
-    /* Ajustes adicionales para móviles */
+  }
+  
+  /* Mejoras de impresión */
+  @media print {
     .presupuesto-container {
-        padding: 10px;
+      box-shadow: none;
+      border: none;
+      padding: 0;
     }
-
-    .seccion h2 {
-        font-size: 1.25rem;
+    
+    .no-print {
+      display: none !important;
     }
-
-    .computos-metricos th,
-    .computos-metricos td {
-        padding: 6px;
-    }
-}
+  }

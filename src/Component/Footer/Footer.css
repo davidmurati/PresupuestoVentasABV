@@ -5,11 +5,13 @@
     position:relative;
     bottom: 0;
     width: 100%;
+    background-color:#fdfdfd00;
+    box-shadow: #fffefe00;
   }
 
   .footer-text{
     margin: 20px;
-    color: #eeecec;
+    color: #181818;
     font-size: 10px;
     text-align: center;
   }

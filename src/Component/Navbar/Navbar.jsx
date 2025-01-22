@@ -9,8 +9,8 @@ function Navbar() {
      
       <ul>
         <li><a href="/" exact>Inicio</a></li>
-        <li><a href="/PresupuestoVentas">PresupuestoVentas</a></li>
-        <li><a href="/ConvertirArchivo">Generar Archivo VentasGastos</a></li>
+        <li><a href="/Presupuestoasadoenventas1">P I Ventas</a></li>
+        <li><a href="/PresupuestoParaCliente">P Clientes</a></li>
         
       </ul>
     </nav>

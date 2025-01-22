@@ -1,0 +1,202 @@
+/* PresupuestoUnificado.css - Versión Mejorada */
+
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #45a049;
+    --text-color: #000000;
+    --background-light: #f8f9fa;
+    --border-color: #dddddd;
+  }
+  
+  /* Estilos base responsivos */
+  .contenedor-unificado {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    font-family: 'Arial', sans-serif;
+    color: var(--text-color);
+    box-sizing: border-box;
+  }
+  
+  /* Barra de progreso adaptativa */
+  .progreso {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+  
+  .paso {
+    padding: 1rem;
+    text-align: center;
+    background: var(--background-light);
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+  
+  .paso.activo {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--secondary-color);
+  }
+  
+  /* Secciones adaptativas */
+  .seccion-configuracion,
+  .seccion-ajustes,
+  .seccion-resultados {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.4s ease-out;
+  }
+  
+  h2 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+  
+  /* Tablas responsivas */
+  .tabla-productos {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5rem 0;
+    background:
+      linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+      linear-gradient(to left, white 30%, rgba(255,255,255,0));
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%;
+    background-position: left, right;
+  }
+  
+  table {
+    min-width: 600px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+  }
+  
+  th {
+    background: var(--background-light);
+    font-weight: 600;
+    position: sticky;
+    left: 0;
+  }
+  
+  /* Formularios adaptativos */
+  .grupo-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+  }
+  
+  input[type="number"],
+  input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Botones responsivos */
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    border-radius: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  /* Sistema de grid responsivo */
+  .exportacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  /* Media Queries Mejoradas */
+  @media (max-width: 768px) {
+    .contenedor-unificado {
+      padding: 0.5rem;
+    }
+  
+    table {
+      min-width: 100%;
+      font-size: 0.9rem;
+    }
+  
+    th, td {
+      white-space: normal;
+      padding: 0.6rem;
+    }
+  
+    .grupo-inputs {
+      grid-template-columns: 1fr;
+      padding: 0.5rem;
+    }
+  
+    button {
+      width: 100%;
+      margin: 0.3rem 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .progreso {
+      grid-template-columns: 1fr;
+    }
+  
+    h2 {
+      font-size: 1.3rem;
+    }
+  
+    input[type="number"],
+    input[type="text"] {
+      padding: 0.6rem;
+    }
+  }
+  
+  /* Animaciones mejoradas */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Mejoras de accesibilidad */
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+  
+  /* Scroll suave para móviles */
+  @media (hover: none) {
+    .tabla-productos {
+      -webkit-overflow-scrolling: touch;
+    }
+  }

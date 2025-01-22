@@ -184,7 +184,7 @@ const PresupuestoParaCliente = () => {
 
         <!-- Sección de Condiciones -->
         <div class="seccion">
-          <h2>Condiciones del Servicio</h2>
+          <h2>Condiciones del presupuesto</h2>
           <p>${condiciones}</p>
         </div>
       </div>
