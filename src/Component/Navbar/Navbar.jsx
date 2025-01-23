@@ -8,7 +8,7 @@ function Navbar() {
     <nav className="navbar">
      
       <ul>
-        <li><a href="/" exact>Inicio</a></li>
+        <li><a href="/">Inicio</a></li>
         <li><a href="/Presupuestoasadoenventas1">P I Ventas</a></li>
         <li><a href="/PresupuestoParaCliente">P Clientes</a></li>
         

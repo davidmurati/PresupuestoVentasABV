@@ -221,8 +221,8 @@ const PresupuestoUnificado = () => {
     const impuestosMes1 = utilidadOperativaMes1 * mes1.Tasa_Impuestos;
     const impuestosMes2 = utilidadOperativaMes2 * mes2.Tasa_Impuestos;
 
-    const flujoCajaMes1 = (utilidadOperativaMes1 - impuestosMes1) + mes1.Gastos_Operativos_Otros_Costos;
-    const flujoCajaMes2 = (utilidadOperativaMes2 - impuestosMes2) + mes2.Gastos_Operativos_Otros_Costos;
+    const flujoCajaMes1 = (utilidadOperativaMes1 - impuestosMes1);
+    const flujoCajaMes2 = (utilidadOperativaMes2 - impuestosMes2);
 
     return {
       VentasTotalesMes1: mes1.Ventas_totales,
@@ -245,9 +245,9 @@ const PresupuestoUnificado = () => {
 
   const calcularIndicadoresFinancieros = (estado) => {
     return {
-      MargenGanancia: ((estado.UtilidadNetaMes1 + estado.UtilidadNetaMes2) / 
-                      (estado.VentasTotalesMes1 + estado.VentasTotalesMes2)) * 100,
-      Rentabilidad: ((estado.FlujoCajaTotal) / 
+      MargenGanancia: ((estado.UtilidadNetaMes2) / 
+                      (estado.VentasTotalesMes2)) * 100,
+      Rentabilidad: ((estado.UtilidadNetaMes2) / 
                     (jsonModificado.Mes2.Totales.Costo_de_ventas_totales + 
                      jsonModificado.Mes2.Totales.Gastos_Operativos_Otros_Costos)) * 100,
       FlujoCajaTotal: estado.FlujoCajaTotal
@@ -565,7 +565,7 @@ const PresupuestoUnificado = () => {
                       <th>Concepto</th>
                       <th>Mes 1 ($)</th>
                       <th>Mes 2 ($)</th>
-                      <th>Total ($)</th>
+                      <th>Dif ($)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -573,37 +573,37 @@ const PresupuestoUnificado = () => {
                       <td>Ventas Totales</td>
                       <td>{resultados.EstadoResultados.VentasTotalesMes1.toFixed(2)}</td>
                       <td>{resultados.EstadoResultados.VentasTotalesMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.VentasTotalesMes1 + resultados.EstadoResultados.VentasTotalesMes2).toFixed(2)}</td>
+                      <td>{(resultados.EstadoResultados.VentasTotalesMes2 - resultados.EstadoResultados.VentasTotalesMes1).toFixed(2)}</td>
                     </tr>
                     <tr>
                       <td>Costos Totales</td>
                       <td>{resultados.EstadoResultados.CostosTotalesMes1.toFixed(2)}</td>
                       <td>{resultados.EstadoResultados.CostosTotalesMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.CostosTotalesMes1 + resultados.EstadoResultados.CostosTotalesMes2).toFixed(2)}</td>
+                      <td>{(resultados.EstadoResultados.CostosTotalesMes2 - resultados.EstadoResultados.CostosTotalesMes1).toFixed(2)}</td>
                     </tr>
                     <tr>
                       <td>Gastos Operativos</td>
                       <td>{resultados.EstadoResultados.GastosOperativosMes1.toFixed(2)}</td>
                       <td>{resultados.EstadoResultados.GastosOperativosMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.GastosOperativosMes1 + resultados.EstadoResultados.GastosOperativosMes2).toFixed(2)}</td>
+                      <td>{(resultados.EstadoResultados.GastosOperativosMes2 - resultados.EstadoResultados.GastosOperativosMes1).toFixed(2)}</td>
                     </tr>
                     <tr>
                       <td>Utilidad Operativa</td>
                       <td>{resultados.EstadoResultados.UtilidadOperativaMes1.toFixed(2)}</td>
                       <td>{resultados.EstadoResultados.UtilidadOperativaMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.UtilidadOperativaMes1 + resultados.EstadoResultados.UtilidadOperativaMes2).toFixed(2)}</td>
+                      <td>{(resultados.EstadoResultados.UtilidadOperativaMes2 - resultados.EstadoResultados.UtilidadOperativaMes1).toFixed(2)}</td>
                     </tr>
                     <tr>
                       <td>Impuestos ({tasaImpuestos}%)</td>
                       <td>{resultados.EstadoResultados.ImpuestosMes1.toFixed(2)}</td>
                       <td>{resultados.EstadoResultados.ImpuestosMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.ImpuestosMes1 + resultados.EstadoResultados.ImpuestosMes2).toFixed(2)}</td>
+                      <td>"N/A"</td>
                     </tr>
                     <tr className="total-final">
                       <td>Utilidad Neta</td>
                       <td>{resultados.EstadoResultados.UtilidadNetaMes1.toFixed(2)}</td>
                       <td>{resultados.EstadoResultados.UtilidadNetaMes2.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.FlujoCajaTotal.toFixed(2)}</td>
+                      <td>{resultados.EstadoResultados.UtilidadNetaMes2.toFixed(2)-resultados.EstadoResultados.UtilidadNetaMes1.toFixed(2)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -613,13 +613,13 @@ const PresupuestoUnificado = () => {
                 <h3>📈 Indicadores Clave</h3>
                 <div className="indicadores-grid">
                   <div className="indicador">
-                    <label>Margen de Ganancia</label>
+                    <label>Margen de Ganancia mes 2</label>
                     <div className="valor-indicador">
                       {resultados.Indicadores.MargenGanancia.toFixed(2)}%
                     </div>
                   </div>
                   <div className="indicador">
-                    <label>Rentabilidad</label>
+                    <label>Rentabilidad mes 2</label>
                     <div className="valor-indicador">
                       {resultados.Indicadores.Rentabilidad.toFixed(2)}%
                     </div>
@@ -627,7 +627,7 @@ const PresupuestoUnificado = () => {
                   <div className="indicador">
                     <label>Flujo de Caja Total</label>
                     <div className="valor-indicador">
-                      ${resultados.Indicadores.FlujoCajaTotal.toFixed(2)}
+                      ${resultados.EstadoResultados.FlujoCajaTotal.toFixed(2)}
                     </div>
                   </div>
                 </div>
