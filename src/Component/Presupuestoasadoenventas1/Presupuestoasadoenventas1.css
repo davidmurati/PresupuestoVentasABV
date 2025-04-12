@@ -1,532 +1,120 @@
-/* Presupuestoasadoenventas1.css - Adaptado al Diseño Moderno 2025 */
+/* Optimización específica para tablas en dispositivos móviles */
 
-:root {
-  /* Paleta de colores moderna */
-  --primary: #2563eb;          /* Azul vibrante */
-  --primary-dark: #1d4ed8;     /* Azul oscuro */
-  --secondary: #9333ea;        /* Púrpura para acentos */
-  --success: #10b981;          /* Verde éxito */
-  --warning: #f59e0b;          /* Naranja advertencia */
-  --danger: #ef4444;           /* Rojo para alertas */
-  --neutral-50: #fafafa;       /* Fondo claro */
-  --neutral-100: #f4f4f5;      /* Fondo de tarjetas */
-  --neutral-200: #e4e4e7;      /* Bordes suaves */
-  --neutral-300: #d4d4d8;      /* Bordes medios */
-  --neutral-700: #3f3f46;      /* Texto secundario */
-  --neutral-900: #18181b;      /* Texto principal */
-  
-  /* Variables funcionales */
-  --card-radius: 16px;
-  --button-radius: 14px;
-  --transition-fast: 0.15s ease;
-  --transition-medium: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Estructura Base */
-.presupuesto-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Inter var', 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--neutral-900);
-  padding-top: 80px;
-}
-
-/* Secciones de etapas */
-.seccion-etapa {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
-  backdrop-filter: blur(10px);
-  border-radius: var(--card-radius);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: var(--transition-medium);
-}
-
-.seccion-etapa:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.seccion-etapa h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: var(--neutral-900);
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-/* Barra de Progreso */
-.progreso-etapas {
-  display: flex;
-  justify-content: space-between;
-  margin: 2rem 0;
-  gap: 1rem;
-}
-
-.etapa {
-  flex: 1;
-  padding: 1rem;
-  text-align: center;
-  background: white;
-  border: 1px solid var(--neutral-200);
-  border-radius: var(--card-radius);
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-}
-
-.etapa.activa {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  color: white;
-  border-color: transparent;
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
-}
-
-.numero-etapa {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.texto-etapa {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-/* Tablas Responsivas */
-.tabla-productos {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 1.5rem 0;
-  border-radius: var(--card-radius);
-  background: white;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--neutral-200);
-}
-
-table {
-  width: 100%;
-  min-width: 600px;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--neutral-200);
-  vertical-align: middle;
-}
-
-th {
-  background: var(--neutral-100);
-  font-weight: 600;
-  position: sticky;
-  left: 0;
-  white-space: nowrap;
-  color: var(--primary-dark);
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-}
-
-td {
-  color: var(--neutral-700);
-  font-size: 0.95rem;
-}
-
-/* Celdas Numéricas Compactas */
-.numero-compacto {
-  font-family: 'SF Mono', 'Courier New', monospace;
-  font-size: 0.9rem;
-  letter-spacing: -0.5px;
-  white-space: nowrap;
-  color: var(--primary-dark);
-}
-
-/* Formularios */
-.grupo-input {
-  margin-bottom: 1.25rem;
-}
-
-.grupo-input label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--neutral-700);
-}
-
-input[type="number"],
-input[type="text"] {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--neutral-300);
-  border-radius: 10px;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  background-color: white;
-  color: var(--neutral-900);
-}
-
-input[type="number"]:focus,
-input[type="text"]:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* Botones */
-.boton-primario,
-.boton-siguiente,
-.boton-exportar {
-  padding: 0.8rem 1.5rem;
-  font-size: 0.95rem;
-  border-radius: var(--button-radius);
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.boton-primario:hover,
-.boton-siguiente:hover,
-.boton-exportar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-.boton-primario:active,
-.boton-siguiente:active,
-.boton-exportar:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-.boton-siguiente {
-  margin-top: 1.5rem;
-}
-
-.boton-peligro {
-  background: transparent;
-  color: var(--danger);
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: var(--transition-medium);
-  padding: 0.4rem;
-  border-radius: 8px;
-}
-
-.boton-peligro:hover {
-  background: rgba(239, 68, 68, 0.1);
-  transform: scale(1.1);
-}
-
-/* Instrucciones */
-.instrucciones {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  background: var(--neutral-100);
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  border-left: 4px solid var(--primary);
-}
-
-.instrucciones p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--neutral-700);
-}
-
-/* Configuración avanzada */
-.configuracion-avanzada {
-  display: flex;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-  flex-wrap: wrap;
-}
-
-.tarjeta-configuracion {
-  flex: 1;
-  min-width: 200px;
-  padding: 1.25rem;
-  background: white;
-  border-radius: 12px;
-  border: 1px solid var(--neutral-200);
-  box-shadow: var(--shadow-sm);
-}
-
-.tarjeta-configuracion label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--neutral-700);
-}
-
-/* Grupos de proyecciones */
-.grupo-proyecciones {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--neutral-200);
-}
-
-.grupo-proyecciones h3 {
-  margin-top: 0;
-  margin-bottom: 1.25rem;
-  font-size: 1.2rem;
-  color: var(--primary);
-  border-bottom: 1px solid var(--neutral-200);
-  padding-bottom: 0.75rem;
-}
-
-.fila-proyecciones {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.fila-proyecciones .grupo-input {
-  flex: 1;
-}
-
-/* Resultados */
-.resultado-grupo {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--neutral-200);
-}
-
-.resultado-grupo h3 {
-  margin-top: 0;
-  margin-bottom: 1.25rem;
-  font-size: 1.2rem;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.tabla-resultados {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.tabla-resultados th {
-  background: var(--neutral-100);
-  font-weight: 600;
-  text-align: left;
-  padding: 0.75rem 1rem;
-  color: var(--primary-dark);
-  font-size: 0.85rem;
-}
-
-.tabla-resultados td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--neutral-200);
-  color: var(--neutral-700);
-}
-
-.total-final td {
-  font-weight: 600;
-  background: rgba(37, 99, 235, 0.05);
-  color: var(--primary-dark);
-}
-
-/* Indicadores */
-.indicadores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-.indicador {
-  background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,1) 100%);
-  border-radius: 12px;
-  padding: 1.25rem;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--neutral-200);
-  transition: var(--transition-medium);
-}
-
-.indicador:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.indicador label {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--neutral-700);
-  margin-bottom: 0.5rem;
-}
-
-.valor-indicador {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-/* Acciones finales */
-.acciones-finales {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-
-.boton-exportar {
-  flex: 1;
-  min-width: 200px;
-}
-
-/* Media Queries para Móvil */
+/* Enfoque principal: transformar tablas en visualización tipo tarjeta para móviles */
 @media (max-width: 768px) {
-  .presupuesto-container {
-    padding: 1rem;
-    padding-top: 70px;
+  /* Ajuste general para la tabla */
+  .tabla-productos {
+    margin: 1rem 0;
+    border-radius: 12px;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
-
-  .seccion-etapa {
-    padding: 1.5rem;
-  }
-
-  .progreso-etapas {
-    flex-direction: column;
-  }
-
-  .etapa {
+  
+  /* Reset de tabla para dispositivos móviles */
+  .tabla-productos table {
+    display: block;
     width: 100%;
-    margin-bottom: 0.5rem;
-    padding: 0.8rem;
+    min-width: unset;
   }
-
-  table {
-    min-width: 100%;
-    font-size: 0.88rem;
+  
+  /* Ocultar los encabezados en móvil */
+  .tabla-productos thead {
+    display: none;
   }
-
-  th, td {
-    padding: 0.75rem 0.5rem;
-    white-space: normal;
-  }
-
-  .fila-proyecciones {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .configuracion-avanzada {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .indicadores-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .acciones-finales {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .presupuesto-container {
+  
+  /* Ajustes para las filas, convertirlas en tarjetas */
+  .tabla-productos tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--neutral-200);
     padding: 0.75rem;
-    padding-top: 65px;
   }
-
-  .seccion-etapa {
-    padding: 1.25rem;
+  
+  /* Ajustes para las celdas */
+  .tabla-productos td {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--neutral-200);
+    text-align: right;
+    font-size: 0.9rem;
   }
-
-  th, td {
-    padding: 0.5rem 0.3rem;
-    font-size: 0.75rem;
+  
+  .tabla-productos td:last-child {
+    border-bottom: none;
   }
+  
+  /* Añadir pseudo-elementos para mostrar los encabezados como texto */
+  .tabla-productos td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-align: left;
+    color: var(--primary-dark);
+    padding-right: 0.5rem;
+  }
+  
+  /* Estilos para inputs dentro de celdas */
+  .tabla-productos td input {
+    width: 60%;
+    max-width: 150px;
+    margin-left: auto;
+  }
+  
+  /* Botones dentro de tablas */
+  .tabla-productos td .boton-peligro {
+    margin-left: auto;
+  }
+  
+  /* Tabla de resultados específica */
+  .tabla-resultados {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .tabla-resultados tbody tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--neutral-200);
+  }
+  
+  .tabla-resultados td {
+    border: none;
+    padding: 0.5rem;
+    text-align: right;
+  }
+  
+  .tabla-resultados td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+}
 
-  .instrucciones {
+/* Para pantallas muy pequeñas, ajustamos aún más */
+@media (max-width: 480px) {
+  .tabla-productos td {
     flex-direction: column;
-    gap: 1rem;
     align-items: flex-start;
+    padding: 0.5rem;
   }
-
-  .grupo-proyecciones {
-    padding: 1rem;
+  
+  .tabla-productos td::before {
+    margin-bottom: 0.3rem;
+    width: 100%;
   }
-
-  .resultado-grupo {
-    padding: 1rem;
+  
+  .tabla-productos td input,
+  .tabla-productos td .input-nombre {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
   }
-}
-
-/* Spinner y estados de carga */
-.loading {
-  position: relative;
-}
-
-.loading::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(2px);
-  border-radius: var(--card-radius);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.seccion-etapa {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-.resultado-grupo {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-/* Input Enhancements */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
 }
