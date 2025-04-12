@@ -1,22 +1,80 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background-color: #f4f4f9;
+/* App.css - Adaptación al Diseño Moderno 2025 */
+
+:root {
+  /* Paleta de colores moderna */
+  --primary: #2563eb;          /* Azul vibrante */
+  --primary-dark: #1d4ed8;     /* Azul oscuro */
+  --secondary: #9333ea;        /* Púrpura para acentos */
+  --neutral-50: #fafafa;       /* Fondo claro */
+  --neutral-100: #f4f4f5;      /* Fondo de tarjetas */
+  --neutral-200: #e4e4e7;      /* Bordes suaves */
+  --neutral-700: #3f3f46;      /* Texto secundario */
+  --neutral-900: #18181b;      /* Texto principal */
+  --success: #10b981;          /* Verde éxito */
+  --warning: #f59e0b;          /* Naranja advertencia */
+  --info: #3b82f6;             /* Azul información */
+  
+  /* Variables funcionales */
+  --card-radius: 16px;
+  --button-radius: 14px;
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* Estilos base del documento */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter var', 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--neutral-50);
+  color: var(--neutral-900);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  background-image: 
+    radial-gradient(circle at 5% 20%, rgba(37, 99, 235, 0.03) 0%, transparent 800px),
+    radial-gradient(circle at 95% 80%, rgba(147, 51, 234, 0.03) 0%, transparent 800px);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
+
+/* Contenedor principal */
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Estilos para logos y animaciones */
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4em;
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1em rgba(37, 99, 235, 0.6));
 }
+
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 1em rgba(97, 218, 251, 0.6));
 }
 
 @keyframes logo-spin {
@@ -34,10 +92,133 @@
   }
 }
 
+/* Estilos para tarjetas genéricas */
 .card {
-  padding: 2em;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--card-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-medium);
 }
 
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Estilos de botones generales */
+button {
+  border-radius: var(--button-radius);
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: white;
+  color: var(--neutral-900);
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Estilos de enlaces */
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Tipografía */
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+  color: var(--neutral-900);
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--neutral-900);
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--neutral-900);
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--neutral-700);
+}
+
+/* Textos de ayuda */
 .read-the-docs {
-  color: #888;
+  color: var(--neutral-700);
+  font-size: 0.875rem;
+  margin-top: 2rem;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: 0.75rem;
+  }
+  
+  .card {
+    padding: 1.25rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
 }
