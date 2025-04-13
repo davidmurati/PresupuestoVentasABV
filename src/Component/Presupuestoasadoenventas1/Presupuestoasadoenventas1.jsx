@@ -16,6 +16,7 @@ const PresupuestoUnificado = () => {
   
   // Estados para Etapa 1
   const [productosMes1, setProductosMes1] = useState({});
+  const [nombresTemporal, setNombresTemporal] = useState({}); // Estado para edición fluida de nombres
   const [totalesMes1, setTotalesMes1] = useState({
     Ventas_totales: 0,
     Costo_de_ventas_totales: 0,
@@ -74,21 +75,55 @@ const PresupuestoUnificado = () => {
         Costo_total: 0
       }
     }));
+    // Añadir el nuevo nombre al estado temporal
+    setNombresTemporal(prev => ({ ...prev, [nuevoNombre]: nuevoNombre }));
   };
 
-  const renombrarProducto = (nombreViejo, nuevoNombre) => {
-    if (nuevoNombre.trim() === '' || productosMes1[nuevoNombre]) return;
+  // Función para manejar cambios en el input sin actualizar inmediatamente el estado
+  const manejarCambioNombre = (nombreViejo, nuevoNombre) => {
+    setNombresTemporal({ ...nombresTemporal, [nombreViejo]: nuevoNombre });
+  };
+
+  // Función para aplicar el cambio de nombre cuando el input pierde el foco
+  const aplicarCambioNombre = (nombreViejo) => {
+    // Si no hay un nombre temporal o es indefinido, salimos
+    if (!nombresTemporal[nombreViejo]) return;
     
-    const nuevosProductos = { ...productosMes1 };
-    nuevosProductos[nuevoNombre] = nuevosProductos[nombreViejo];
-    delete nuevosProductos[nombreViejo];
-    setProductosMes1(nuevosProductos);
+    const nuevoNombre = nombresTemporal[nombreViejo].trim();
+    
+    // Validaciones
+    if (nuevoNombre === '' || 
+        (nuevoNombre !== nombreViejo && productosMes1[nuevoNombre])) {
+      // Si está vacío o ya existe, revertimos al nombre original
+      setNombresTemporal({ ...nombresTemporal, [nombreViejo]: nombreViejo });
+      return;
+    }
+    
+    // Si el nombre ha cambiado, actualizamos el estado de productos
+    if (nuevoNombre !== nombreViejo) {
+      const nuevosProductos = { ...productosMes1 };
+      nuevosProductos[nuevoNombre] = nuevosProductos[nombreViejo];
+      delete nuevosProductos[nombreViejo];
+      setProductosMes1(nuevosProductos);
+      
+      // Actualizamos el estado temporal
+      const nuevoNombresTemporal = { ...nombresTemporal };
+      delete nuevoNombresTemporal[nombreViejo];
+      nuevoNombresTemporal[nuevoNombre] = nuevoNombre;
+      setNombresTemporal(nuevoNombresTemporal);
+    }
   };
 
   const eliminarProducto = (nombre) => {
     const nuevosProductos = { ...productosMes1 };
     delete nuevosProductos[nombre];
     setProductosMes1(nuevosProductos);
+    
+    // También eliminar del estado de nombres temporales
+    const nuevoNombresTemporal = { ...nombresTemporal };
+    delete nuevoNombresTemporal[nombre];
+    setNombresTemporal(nuevoNombresTemporal);
+    
     calcularTotalesMes1(nuevosProductos);
   };
 
@@ -315,10 +350,10 @@ const PresupuestoUnificado = () => {
                 <tr>
                   <th>Producto</th>
                   <th>Unidades</th>
-                  <th>Precio Unitario ($)</th>
-                  <th>Costo Unitario ($)</th>
-                  <th>Venta Total ($)</th>
-                  <th>Costo Total ($)</th>
+                  <th>Precio ($)</th>
+                  <th>Costo ($)</th>
+                  <th>Venta Total</th>
+                  <th className="columna-opcional">Costo Total</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -328,8 +363,9 @@ const PresupuestoUnificado = () => {
                     <td>
                       <input
                         type="text"
-                        value={nombre}
-                        onChange={(e) => renombrarProducto(nombre, e.target.value)}
+                        value={nombresTemporal[nombre] !== undefined ? nombresTemporal[nombre] : nombre}
+                        onChange={(e) => manejarCambioNombre(nombre, e.target.value)}
+                        onBlur={() => aplicarCambioNombre(nombre)}
                         className="input-nombre"
                       />
                     </td>
@@ -360,7 +396,7 @@ const PresupuestoUnificado = () => {
                       />
                     </td>
                     <td>${datos.Venta_total.toFixed(2)}</td>
-                    <td>${datos.Costo_total.toFixed(2)}</td>
+                    <td className="columna-opcional">${datos.Costo_total.toFixed(2)}</td>
                     <td>
                       <button 
                         onClick={() => eliminarProducto(nombre)}
@@ -535,78 +571,82 @@ const PresupuestoUnificado = () => {
             <>
               <div className="resultado-grupo">
                 <h3>📊 Presupuesto de Ventas</h3>
-                <table className="tabla-resultados">
-                  <thead>
-                    <tr>
-                      <th>Producto</th>
-                      <th>Unidades</th>
-                      <th>Precio Unitario</th>
-                      <th>Ventas Proyectadas</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.entries(resultados.PresupuestoVentas).map(([nombre, datos]) => (
-                      <tr key={nombre}>
-                        <td>{nombre}</td>
-                        <td>{datos.Unidades}</td>
-                        <td>${datos.PrecioUnitario.toFixed(2)}</td>
-                        <td>${datos.VentasProyectadas.toFixed(2)}</td>
+                <div className="tabla-responsive">
+                  <table className="tabla-resultados">
+                    <thead>
+                      <tr>
+                        <th>Producto</th>
+                        <th>Unidades</th>
+                        <th>Precio Unitario</th>
+                        <th>Ventas Proyectadas</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {Object.entries(resultados.PresupuestoVentas).map(([nombre, datos]) => (
+                        <tr key={nombre}>
+                          <td>{nombre}</td>
+                          <td>{datos.Unidades}</td>
+                          <td>${datos.PrecioUnitario.toFixed(2)}</td>
+                          <td>${datos.VentasProyectadas.toFixed(2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div className="resultado-grupo">
                 <h3>💰 Estado de Resultados</h3>
-                <table className="tabla-resultados">
-                  <thead>
-                    <tr>
-                      <th>Concepto</th>
-                      <th>Mes 1 ($)</th>
-                      <th>Mes 2 ($)</th>
-                      <th>Dif ($)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Ventas Totales</td>
-                      <td>{resultados.EstadoResultados.VentasTotalesMes1.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.VentasTotalesMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.VentasTotalesMes2 - resultados.EstadoResultados.VentasTotalesMes1).toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                      <td>Costos Totales</td>
-                      <td>{resultados.EstadoResultados.CostosTotalesMes1.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.CostosTotalesMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.CostosTotalesMes2 - resultados.EstadoResultados.CostosTotalesMes1).toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                      <td>Gastos Operativos</td>
-                      <td>{resultados.EstadoResultados.GastosOperativosMes1.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.GastosOperativosMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.GastosOperativosMes2 - resultados.EstadoResultados.GastosOperativosMes1).toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                      <td>Utilidad Operativa</td>
-                      <td>{resultados.EstadoResultados.UtilidadOperativaMes1.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.UtilidadOperativaMes2.toFixed(2)}</td>
-                      <td>{(resultados.EstadoResultados.UtilidadOperativaMes2 - resultados.EstadoResultados.UtilidadOperativaMes1).toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                      <td>Impuestos ({tasaImpuestos}%)</td>
-                      <td>{resultados.EstadoResultados.ImpuestosMes1.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.ImpuestosMes2.toFixed(2)}</td>
-                      <td>"N/A"</td>
-                    </tr>
-                    <tr className="total-final">
-                      <td>Utilidad Neta</td>
-                      <td>{resultados.EstadoResultados.UtilidadNetaMes1.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.UtilidadNetaMes2.toFixed(2)}</td>
-                      <td>{resultados.EstadoResultados.UtilidadNetaMes2.toFixed(2)-resultados.EstadoResultados.UtilidadNetaMes1.toFixed(2)}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className="tabla-responsive">
+                  <table className="tabla-resultados">
+                    <thead>
+                      <tr>
+                        <th>Concepto</th>
+                        <th>Mes 1 ($)</th>
+                        <th>Mes 2 ($)</th>
+                        <th>Dif ($)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ventas Totales</td>
+                        <td>{resultados.EstadoResultados.VentasTotalesMes1.toFixed(2)}</td>
+                        <td>{resultados.EstadoResultados.VentasTotalesMes2.toFixed(2)}</td>
+                        <td>{(resultados.EstadoResultados.VentasTotalesMes2 - resultados.EstadoResultados.VentasTotalesMes1).toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td>Costos Totales</td>
+                        <td>{resultados.EstadoResultados.CostosTotalesMes1.toFixed(2)}</td>
+                        <td>{resultados.EstadoResultados.CostosTotalesMes2.toFixed(2)}</td>
+                        <td>{(resultados.EstadoResultados.CostosTotalesMes2 - resultados.EstadoResultados.CostosTotalesMes1).toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td>Gastos Operativos</td>
+                        <td>{resultados.EstadoResultados.GastosOperativosMes1.toFixed(2)}</td>
+                        <td>{resultados.EstadoResultados.GastosOperativosMes2.toFixed(2)}</td>
+                        <td>{(resultados.EstadoResultados.GastosOperativosMes2 - resultados.EstadoResultados.GastosOperativosMes1).toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td>Utilidad Operativa</td>
+                        <td>{resultados.EstadoResultados.UtilidadOperativaMes1.toFixed(2)}</td>
+                        <td>{resultados.EstadoResultados.UtilidadOperativaMes2.toFixed(2)}</td>
+                        <td>{(resultados.EstadoResultados.UtilidadOperativaMes2 - resultados.EstadoResultados.UtilidadOperativaMes1).toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td>Impuestos ({tasaImpuestos}%)</td>
+                        <td>{resultados.EstadoResultados.ImpuestosMes1.toFixed(2)}</td>
+                        <td>{resultados.EstadoResultados.ImpuestosMes2.toFixed(2)}</td>
+                        <td>{(resultados.EstadoResultados.ImpuestosMes2 - resultados.EstadoResultados.ImpuestosMes1).toFixed(2)}</td>
+                      </tr>
+                      <tr className="total-final">
+                        <td>Utilidad Neta</td>
+                        <td>{resultados.EstadoResultados.UtilidadNetaMes1.toFixed(2)}</td>
+                        <td>{resultados.EstadoResultados.UtilidadNetaMes2.toFixed(2)}</td>
+                        <td>{(resultados.EstadoResultados.UtilidadNetaMes2 - resultados.EstadoResultados.UtilidadNetaMes1).toFixed(2)}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div className="resultado-grupo">

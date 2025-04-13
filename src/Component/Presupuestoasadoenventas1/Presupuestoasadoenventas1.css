@@ -1,120 +1,629 @@
-/* Optimización específica para tablas en dispositivos móviles */
+/* PresupuestoParaCliente.css - Versión Optimizada */
 
-/* Enfoque principal: transformar tablas en visualización tipo tarjeta para móviles */
+:root {
+  /* Colores principales */
+  --primary: #2563eb;          /* Azul vibrante */
+  --primary-hover: #1d4ed8;    /* Azul oscuro para hover */
+  --secondary: #9333ea;        /* Púrpura para acentos */
+  --success: #10b981;          /* Verde éxito */
+  --warning: #f59e0b;          /* Naranja advertencia */
+  --danger: #ef4444;           /* Rojo para alertas */
+  
+  /* Escala de grises */
+  --neutral-50: #fafafa;       /* Fondo claro */
+  --neutral-100: #f4f4f5;      /* Fondo de tarjetas */
+  --neutral-200: #e4e4e7;      /* Bordes suaves */
+  --neutral-300: #d4d4d8;      /* Bordes medios */
+  --neutral-600: #52525b;      /* Texto medio */
+  --neutral-700: #3f3f46;      /* Texto secundario */
+  --neutral-900: #18181b;      /* Texto principal */
+  
+  /* Variables de diseño */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition-short: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-default: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+  
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+}
+
+/* Normalización y Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base y Typography */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--neutral-50);
+  color: var(--neutral-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.025) 0%, transparent 70%),
+    radial-gradient(circle at 90% 80%, rgba(147, 51, 234, 0.025) 0%, transparent 70%);
+  background-attachment: fixed;
+}
+
+/* Contenedor principal */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-6);
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Encabezados */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--neutral-900);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.container > h1 {
+  text-align: center;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Secciones del formulario */
+.form-section {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+  border: 1px solid var(--neutral-200);
+  transition: var(--transition-default);
+}
+
+.form-section:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  opacity: 0.8;
+}
+
+.form-section h2 {
+  color: var(--primary);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+/* Grupos de inputs */
+.input-group {
+  background: var(--neutral-50);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--neutral-200);
+  transition: var(--transition-short);
+}
+
+.input-group:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--neutral-300);
+}
+
+.input-group h3 {
+  color: var(--primary);
+  font-size: 1.05rem;
+  margin-bottom: var(--space-2);
+}
+
+/* Form Elements */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--neutral-700);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--neutral-900);
+  background-color: white;
+  transition: var(--transition-short);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+input[type="file"] {
+  padding: var(--space-3);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Buttons */
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition-default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.calculate-button, .download-button {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0.8rem 1.25rem;
+  border-radius: var(--radius-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.calculate-button {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
+.download-button {
+  background: linear-gradient(to right, var(--success), var(--primary));
+  margin-top: var(--space-4);
+}
+
+.button-group {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: var(--space-4);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+th {
+  background: var(--primary);
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+}
+
+th:first-child {
+  border-top-left-radius: var(--radius-md);
+}
+
+th:last-child {
+  border-top-right-radius: var(--radius-md);
+}
+
+td {
+  background: white;
+  border-bottom: 1px solid var(--neutral-200);
+  color: var(--neutral-700);
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: var(--radius-md);
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: var(--radius-md);
+}
+
+tr:hover td {
+  background-color: var(--neutral-50);
+}
+
+/* Presupuesto generado */
+.presupuesto-generado {
+  margin-top: var(--space-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.presupuesto-container {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+}
+
+.seccion {
+  margin-bottom: var(--space-6);
+}
+
+.seccion h2 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.seccion p {
+  margin-bottom: var(--space-3);
+  color: var(--neutral-600);
+}
+
+.seccion p strong {
+  color: var(--neutral-900);
+  font-weight: 600;
+}
+
+.computos-metricos {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin: var(--space-4) 0;
+}
+
+/* Resultados */
+.resultados-container {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-lg);
+  margin-top: var(--space-6);
+}
+
+.resultados-container h2 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.resultados {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.resultados tr:last-child {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.resultados tr:last-child td {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+/* Estilos de utilidad */
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: var(--space-4);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+
+/* Clases para animaciones */
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  /* Ajuste general para la tabla */
-  .tabla-productos {
-    margin: 1rem 0;
-    border-radius: 12px;
-    overflow: visible;
-    background: transparent;
-    border: none;
-    box-shadow: none;
+  .container {
+    padding: var(--space-4);
+    padding-top: 70px;
+    gap: var(--space-4);
   }
   
-  /* Reset de tabla para dispositivos móviles */
-  .tabla-productos table {
+  .form-section {
+    padding: var(--space-4);
+  }
+  
+  table {
     display: block;
-    width: 100%;
-    min-width: unset;
+    overflow-x: auto;
   }
   
-  /* Ocultar los encabezados en móvil */
-  .tabla-productos thead {
-    display: none;
+  .presupuesto-container {
+    padding: var(--space-4);
   }
   
-  /* Ajustes para las filas, convertirlas en tarjetas */
-  .tabla-productos tbody tr {
-    display: block;
-    margin-bottom: 1rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--neutral-200);
-    padding: 0.75rem;
-  }
-  
-  /* Ajustes para las celdas */
-  .tabla-productos td {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    border-bottom: 1px solid var(--neutral-200);
-    text-align: right;
-    font-size: 0.9rem;
-  }
-  
-  .tabla-productos td:last-child {
-    border-bottom: none;
-  }
-  
-  /* Añadir pseudo-elementos para mostrar los encabezados como texto */
-  .tabla-productos td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    text-align: left;
-    color: var(--primary-dark);
-    padding-right: 0.5rem;
-  }
-  
-  /* Estilos para inputs dentro de celdas */
-  .tabla-productos td input {
-    width: 60%;
-    max-width: 150px;
-    margin-left: auto;
-  }
-  
-  /* Botones dentro de tablas */
-  .tabla-productos td .boton-peligro {
-    margin-left: auto;
-  }
-  
-  /* Tabla de resultados específica */
-  .tabla-resultados {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-  }
-  
-  .tabla-resultados tbody tr {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--neutral-200);
-  }
-  
-  .tabla-resultados td {
-    border: none;
-    padding: 0.5rem;
-    text-align: right;
-  }
-  
-  .tabla-resultados td:first-child {
-    text-align: left;
-    font-weight: 500;
+  button {
+    padding: 0.7rem 1rem;
   }
 }
 
-/* Para pantallas muy pequeñas, ajustamos aún más */
 @media (max-width: 480px) {
-  .tabla-productos td {
+  :root {
+    --space-4: 0.75rem;
+    --space-6: 1.25rem;
+    --space-8: 1.75rem;
+  }
+  
+  .container {
+    padding: var(--space-3);
+    padding-top: 65px;
+  }
+  
+  .form-section {
+    padding: var(--space-3);
+  }
+  
+  .input-group {
+    padding: var(--space-3);
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  .button-group {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0.5rem;
   }
   
-  .tabla-productos td::before {
-    margin-bottom: 0.3rem;
-    width: 100%;
+  .presupuesto-container {
+    padding: var(--space-4);
   }
   
-  .tabla-productos td input,
-  .tabla-productos td .input-nombre {
+  th, td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Optimizaciones de impresión */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  .presupuesto-generado, .presupuesto-generado * {
+    visibility: visible;
+  }
+  
+  .presupuesto-generado {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    max-width: 100%;
-    margin-left: 0;
+    box-shadow: none;
+  }
+  
+  .presupuesto-container {
+    padding: 0;
+    box-shadow: none;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Estilos específicos para todas las tablas */
+.computos-metricos, .resultados {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-4);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Estilos para las celdas de encabezado y datos */
+.computos-metricos th,
+.computos-metricos td,
+.resultados th,
+.resultados td {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 8px 6px;
+  border: 1px solid var(--neutral-200);
+}
+
+/* Estilos específicos para la tabla de resultados */
+.resultados th:first-child,
+.resultados td:first-child {
+  width: 70%;
+  text-align: left;
+}
+
+.resultados th:last-child,
+.resultados td:last-child {
+  width: 30%;
+  text-align: right;
+}
+
+/* Para la última fila (Total de la Partida) */
+.resultados tr:last-child td {
+  font-weight: 700;
+  color: var(--primary);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+/* Estilos para las tablas de productos y conceptos */
+.computos-metricos th:nth-child(1),
+.computos-metricos td:nth-child(1) {
+  width: 40%;
+  text-align: left;
+}
+
+.computos-metricos th:nth-child(2),
+.computos-metricos td:nth-child(2) {
+  width: 20%;
+  text-align: center;
+}
+
+.computos-metricos th:nth-child(3),
+.computos-metricos td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+
+.computos-metricos th:nth-child(4),
+.computos-metricos td:nth-child(4) {
+  width: 20%;
+  text-align: right;
+}
+
+/* Mejora para dispositivos móviles */
+@media (max-width: 768px) {
+  .computos-metricos, .resultados {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+  }
+  
+  .computos-metricos th,
+  .computos-metricos td,
+  .resultados th,
+  .resultados td {
+    min-width: 100px;
+  }
+  
+  .resultados td:first-child {
+    width: 60%;
+  }
+  
+  .resultados td:last-child {
+    width: 40%;
+  }
+}
+
+/* Ajustes para impresión */
+@media print {
+  .computos-metricos, .resultados {
+    page-break-inside: avoid;
+    width: 100% !important;
+  }
+  
+  .computos-metricos thead, .resultados thead {
+    display: table-header-group;
+  }
+  
+  .computos-metricos th, .resultados th {
+    background-color: #f0f0f0 !important;
+    color: #000 !important;
+    font-weight: bold !important;
+  }
+  
+  .computos-metricos th,
+  .computos-metricos td,
+  .resultados th,
+  .resultados td {
+    padding: 4px !important;
+    font-size: 9pt !important;
   }
 }
